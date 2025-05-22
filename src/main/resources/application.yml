@@ -1,0 +1,10 @@
+firebase:
+  config-file: classpath:serviceAccountKey.json
+  storage-bucket: your-project-id.appspot.com
+server:
+  port: 8081
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
