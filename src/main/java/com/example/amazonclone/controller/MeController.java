@@ -17,21 +17,16 @@ public class MeController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<?> getCurrentUser(HttpServletRequest request) throws Exception {
+    public ResponseEntity<?> getCurrentUser(HttpServletRequest request) {
         FirebaseToken token = (FirebaseToken) request.getAttribute("firebaseUser");
-
         if (token == null) {
             return ResponseEntity.status(401).body("Unauthorized");
         }
 
-        userService.initUserIfNotExists(token);
-
-        String role = userService.getUserRole(token.getUid());
-
         return ResponseEntity.ok(Map.of(
                 "uid", token.getUid(),
-                "email", token.getEmail(),
-                "role", role
+                "email", token.getEmail()
         ));
     }
+
 }
